@@ -22,16 +22,26 @@
 
     <main class="container py-5">
       <header class="text-center mb-5">
-        <h1 class="display-5 fw-bold">Personajes</h1>
-        <p class="lead text-body-secondary mb-0">
-          Explora los personajes del universo de Rick and Morty.
-        </p>
+        <form id="search-form" class="mb-5 col-md-8 col-lg-6 mx-auto">
+          <div class="input-group">
+            <input
+              id="search-input"
+              type="search"
+              class="form-control"
+              placeholder="Buscar personaje por nombre..."
+              aria-label="Buscar personaje por nombre"
+            />
+            <button class="btn btn-success" type="submit">Buscar</button>
+          </div>
+        </form>
       </header>
 
       <section aria-labelledby="characters-title">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 id="characters-title" class="h3 mb-0">Todos los personajes</h2>
-          <span id="characters-count" class="badge text-bg-success">0 personajes</span>
+          <span id="characters-count" class="badge text-bg-success"
+            >0 personajes</span
+          >
         </div>
 
         <div id="characters-loading" class="text-center py-5" role="status">
@@ -39,11 +49,18 @@
           <p class="text-body-secondary mt-3 mb-0">Cargando personajes...</p>
         </div>
 
-        <div id="characters-error" class="alert alert-danger d-none" role="alert">
+        <div
+          id="characters-error"
+          class="alert alert-danger d-none"
+          role="alert"
+        >
           No se pudieron cargar los personajes. Inténtalo de nuevo.
         </div>
 
-        <div id="characters-list" class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+        <div
+          id="characters-list"
+          class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4"
+        >
           <!-- Las tarjetas de personajes se insertarán aquí desde app.js. -->
         </div>
       </section>

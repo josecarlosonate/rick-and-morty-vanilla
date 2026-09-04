@@ -1,9 +1,11 @@
-import { getCharacters } from "./api.js";
+import { getCharacters, getCharactersByName } from "./api.js";
 
 const charactersList = document.querySelector("#characters-list");
 const charactersLoading = document.querySelector("#characters-loading");
 const charactersCount = document.querySelector("#characters-count");
 const charactersError = document.querySelector("#characters-error");
+const searchForm = document.querySelector("#search-form");
+const searchInput = document.querySelector("#search-input");
 
 async function init() {
   try {
@@ -19,6 +21,7 @@ async function init() {
 }
 
 function renderCharacters(characters) {
+  charactersList.innerHTML = "";
   characters.forEach((character) => {
     const column = document.createElement("div");
     column.className = "col";
@@ -49,5 +52,31 @@ function renderCharacters(characters) {
     charactersList.appendChild(column);
   });
 }
+
+searchForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const name = searchInput.value.trim();
+  if (!name) {
+    return;
+  }
+
+  charactersError.classList.add("d-none");
+
+  try {
+    const characters = await getCharactersByName(name);
+
+    renderCharacters(characters);
+    charactersCount.textContent = `${characters.length} personajes`;
+  } catch (error) {
+    console.error("Error searching characters:", error);
+
+    charactersList.innerHTML = "";
+    charactersCount.textContent = "0 personajes";
+    charactersError.textContent =
+      "No se encontraron personajes con ese nombre.";
+    charactersError.classList.remove("d-none");
+  }
+});
 
 init();
