@@ -58,6 +58,7 @@ searchForm.addEventListener("submit", async (event) => {
 
   const name = searchInput.value.trim();
   if (!name) {
+    alert("Por favor, ingresa un nombre de personaje para buscar.");
     return;
   }
 
