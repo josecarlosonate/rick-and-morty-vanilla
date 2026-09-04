@@ -23,6 +23,10 @@ function renderCharacters(characters) {
     const column = document.createElement("div");
     column.className = "col";
 
+    const link = document.createElement("a");
+    link.href = `./character.html?id=${character.id}`;
+    link.className = "text-decoration-none";
+
     const card = document.createElement("article");
     card.className = "card h-100 shadow-sm";
 
@@ -40,7 +44,8 @@ function renderCharacters(characters) {
 
     cardBody.appendChild(name);
     card.append(image, cardBody);
-    column.appendChild(card);
+    link.appendChild(card);
+    column.appendChild(link);
     charactersList.appendChild(column);
   });
 }
