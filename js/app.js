@@ -24,11 +24,15 @@ function showError(message) {
 
 async function init() {
   try {
+    charactersLoading.classList.remove("d-none");
+    charactersError.classList.add("d-none");
+    charactersList.innerHTML = "";
+
     const characters = await getCharacters();
     renderCharacters(characters);
+
     charactersCount.textContent = `${characters.length} personajes`;
     charactersLoading.classList.add("d-none");
-    searchInput.value = "";
   } catch (error) {
     charactersLoading.classList.add("d-none");
     charactersError.classList.remove("d-none");
@@ -80,30 +84,34 @@ searchForm.addEventListener("submit", async (event) => {
   const name = searchInput.value.trim();
   if (!name) {
     showError("Escribe un nombre para buscar.");
-    charactersList.innerHTML = "";
-    charactersCount.textContent = "0 personajes";
     return;
   }
 
   charactersError.classList.add("d-none");
   clearSearchBtn.classList.remove("d-none");
-  charactersTitle.textContent = `Resultados para "${name}"`;
+  charactersList.innerHTML = "";
 
   try {
     const characters = await getCharactersByName(name);
 
     renderCharacters(characters);
+
+    charactersTitle.textContent = `Resultados para "${name}"`;
     charactersCount.textContent = `${characters.length} personajes`;
+    clearSearchBtn.classList.remove("d-none");
   } catch (error) {
-    charactersList.innerHTML = "";
-    charactersCount.textContent = "0 personajes";
-    charactersError.textContent =
-      "No se encontraron personajes con ese nombre.";
-    charactersError.classList.remove("d-none");
+    showError("No se encontraron personajes con ese nombre.");
+    clearSearchBtn.classList.remove("d-none");
+    charactersTitle.textContent = `Resultados para "${name}"`;
+  } finally {
+    charactersLoading.classList.add("d-none");
   }
 });
 
 clearSearchBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  charactersTitle.textContent = "Personajes aleatorios";
+  clearSearchBtn.classList.add("d-none");
   init();
 });
 
