@@ -1,0 +1,60 @@
+:root {
+  --rm-green: #97ce4c;
+  --rm-green-dark: #6b9b2f;
+  --rm-purple: #44281d;
+  --rm-bg: #0f0f0f;
+  --status-alive: #97ce4c;
+  --status-dead: #e74c3c;
+  --status-unknown: #95a5a6;
+}
+
+body {
+  background-color: #121212;
+  color: #e8e8e8;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border: 1px solid #f8f4f4;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.card-title {
+  color: var(--rm-green-dark);
+  font-size: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(151, 206, 76, 0.15);
+  border-color: var(--rm-green);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-alive {
+  background-color: rgba(151, 206, 76, 0.2);
+  color: var(--status-alive);
+  border: 1px solid var(--status-alive);
+}
+
+.status-dead {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: var(--status-dead);
+  border: 1px solid var(--status-dead);
+}
+
+.status-unknown {
+  background-color: rgba(149, 165, 166, 0.2);
+  color: var(--status-unknown);
+  border: 1px solid var(--status-unknown);
+}
