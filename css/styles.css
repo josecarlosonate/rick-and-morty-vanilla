@@ -1,6 +1,7 @@
 :root {
   --rm-green: #97ce4c;
   --rm-green-dark: #6b9b2f;
+  --bs-success: #147b4b;
   --rm-purple: #44281d;
   --rm-bg: #0f0f0f;
   --status-alive: #97ce4c;
@@ -58,3 +59,24 @@ body {
   color: var(--status-unknown);
   border: 1px solid var(--status-unknown);
 }
+
+#clear-search {
+    border-radius: 0.375rem;
+    border: 1px solid rgba(25, 135, 84, 0.3); 
+    padding-top: 0.375rem; 
+    padding-bottom: 0.375rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    color: var(--bs-success);
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+#clear-search:hover {
+  border-color: var(--bs-success);
+  background-color: rgba(25, 135, 84, 0.1); 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 135, 84, 0.4); 
+}
+

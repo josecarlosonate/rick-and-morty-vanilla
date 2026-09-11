@@ -6,6 +6,8 @@ const charactersCount = document.querySelector("#characters-count");
 const charactersError = document.querySelector("#characters-error");
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
+const clearSearchBtn = document.querySelector("#clear-search");
+const charactersTitle = document.querySelector("#characters-title");
 
 function getStatusClass(status) {
   const normalized = status?.toLowerCase();
@@ -26,6 +28,7 @@ async function init() {
     renderCharacters(characters);
     charactersCount.textContent = `${characters.length} personajes`;
     charactersLoading.classList.add("d-none");
+    searchInput.value = "";
   } catch (error) {
     charactersLoading.classList.add("d-none");
     charactersError.classList.remove("d-none");
@@ -83,6 +86,8 @@ searchForm.addEventListener("submit", async (event) => {
   }
 
   charactersError.classList.add("d-none");
+  clearSearchBtn.classList.remove("d-none");
+  charactersTitle.textContent = `Resultados para "${name}"`;
 
   try {
     const characters = await getCharactersByName(name);
@@ -96,6 +101,10 @@ searchForm.addEventListener("submit", async (event) => {
       "No se encontraron personajes con ese nombre.";
     charactersError.classList.remove("d-none");
   }
+});
+
+clearSearchBtn.addEventListener("click", () => {
+  init();
 });
 
 init();
